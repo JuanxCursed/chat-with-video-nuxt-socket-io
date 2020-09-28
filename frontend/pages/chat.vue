@@ -104,7 +104,7 @@ export default {
   layout: 'DashboardLayout',
   data: () => ({
     title: 'Node/Vue test',
-    cameras: true,
+    cameras: false,
     warzone: false,
   }),
   computed: {

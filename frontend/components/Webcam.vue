@@ -16,21 +16,15 @@ export default {
   name: 'Webcam',
   data() {
     return {
-      iceServers: [
-        { urls: 'stun:stun.l.google.com:19302' },
-        { urls: 'stun:stun1.l.google.com:19302' },
-        { urls: 'stun:stun2.l.google.com:19302' },
-        { urls: 'stun:stun3.l.google.com:19302' },
-        { urls: 'stun:stun4.l.google.com:19302' },
-      ],
+      stream: null,
     }
   },
   computed: {
     ...mapState(['user', 'warzone']),
   },
   watch: {
-    warzone(value) {
-      this.text = value
+    stream(stream) {
+      // this.setVideo({ stream, room: this.user.room })
     },
   },
   mounted() {
@@ -38,7 +32,7 @@ export default {
       navigator.mediaDevices.getUserMedia({ video: true }).then((stream) => {
         this.$refs.video.srcObject = stream
         this.$refs.video.play()
-        // this.setVideo(this.$refs.video)
+        this.stream = stream
       })
     }
   },
